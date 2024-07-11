@@ -3,26 +3,33 @@ import Root from "../layouts/Root";
 import Home from "../pages/Home/Home";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
+import News from "../pages/news/News";
+
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Root></Root>, 
+        element: <Root></Root>,
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <Home></Home>,
+                loader: () => fetch('news.json')
+            },
+            {
+                path: '/news/:id',
+                element:<News></News>
             },
             {
                 path: '/login',
-                element: <Login/>
+                element: <Login />
             },
             {
-                path:'/register',
-                element: <Register/>
+                path: '/register',
+                element: <Register />
             }
         ]
-    }    
+    }
 ]);
 
 export default router;
